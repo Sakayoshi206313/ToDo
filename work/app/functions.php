@@ -1,19 +1,16 @@
 <?php
 
-function h($str)
-{
+function h($str) {
   return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
 
-function createToken()
-{
+function createToken() {
   if (!isset($_SESSION['token'])) {
     $_SESSION['token'] = bin2hex(random_bytes(32));
   }
 }
 
-function validateToken()
-{
+function validateToken() {
   if (
     empty($_SESSION['token']) ||
     $_SESSION['token'] !== filter_input(INPUT_POST, 'token')
@@ -42,8 +39,7 @@ function getPdoInstance() {
   }
 }
 
-function addTodo($pdo)
-{
+function addTodo($pdo) {
   $title = trim(filter_input(INPUT_POST, 'title'));
   if ($title === '') {
     return;
@@ -51,6 +47,28 @@ function addTodo($pdo)
 
   $stmt = $pdo->prepare("INSERT INTO todos (title) VALUES (:title)");
   $stmt->bindValue('title', $title, PDO::PARAM_STR);
+  $stmt->execute();
+}
+
+function toggleTodo($pdo) {
+  $id = filter_input(INPUT_POST, 'id');
+  if (empty($id)) {
+    return;
+  }
+  
+  $stmt = $pdo->prepare("UPDATE todos SET is_done = NOT is_done WHERE id = :id");
+  $stmt->bindValue('id', $id, PDO::PARAM_INT);
+  $stmt->execute();
+}
+
+ function deleteTodo($pdo) {
+  $id = filter_input(INPUT_POST, 'id');
+  if (empty($id)) {
+    return;
+  }
+
+  $stmt = $pdo->prepare("DELETE FROM todos WHERE id = :id");
+  $stmt->bindValue('id', $id, PDO::PARAM_INT);
   $stmt->execute();
 }
 

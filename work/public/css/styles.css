@@ -4,7 +4,16 @@ ul {
     padding: 0;
   }
   
+ li{
+  display: flex;
+ }
+
   .done {
     text-decoration: line-through;
     color: #ccc;
+  }
+
+  .delete {
+    color: #ccc;
+    cursor: pointer;
   }
