@@ -6,7 +6,6 @@ createToken();
 
 $pdo = getPdoInstance();
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   validateToken();
   $action = filter_input(INPUT_GET, 'action');
@@ -18,11 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     case 'toggle':
       toggleTodo($pdo);
       break;
-    case 'delet':
+    case 'delete':
       deleteTodo($pdo);
       break;
     default:
-    exit;
+      exit;
   }
 
   header('Location: ' . SITE_URL);
@@ -43,7 +42,7 @@ $todos = getTodos($pdo);
   <h1>Todos</h1>
 
   <form action="?action=add" method="post">
-    <input type="text" name="title" placeholder="Type new todo.">
+    <input class="add" type="text" name="title" placeholder="Type new todo.">
     <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
   </form>
 
@@ -59,7 +58,7 @@ $todos = getTodos($pdo);
         <?= h($todo->title); ?>
       </span>
 
-      <form action="?action=delete" method="post">
+      <form action="?action=delete" method="post" class="delete-form">
         <span class="delete">x</span>
         <input type="hidden" name="id" value="<?= h($todo->id); ?>">
         <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">

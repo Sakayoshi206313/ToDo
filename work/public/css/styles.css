@@ -1,10 +1,26 @@
+h1{
+  width: 300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
 ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  width: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
   }
   
  li{
+  display: flex;
+ }
+
+ .add {
+  width: 300px;
+  margin: 0 auto;
   display: flex;
  }
 
@@ -13,7 +29,16 @@ ul {
     color: #ccc;
   }
 
+  input[type="checkbox"] {
+    margin-right: 8px;
+  }
+
   .delete {
     color: #ccc;
     cursor: pointer;
+  }
+
+  .delete-form {
+    margin-left: auto;
+    padding-left: 8px;
   }
