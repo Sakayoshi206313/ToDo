@@ -22,7 +22,7 @@ function validateToken() {
 function getPdoInstance() {
   try {
     $pdo = new PDO(
-      DSN,
+      DSN,//
       DB_USER,
       DB_PASS,
       [
@@ -72,6 +72,8 @@ function toggleTodo($pdo) {
   $stmt->execute();
 }
 
+
+//データの取得
 function getTodos($pdo)
 {
   $stmt = $pdo->query("SELECT * FROM todos ORDER BY id DESC");

@@ -6,6 +6,7 @@ createToken();
 
 $pdo = getPdoInstance();
 
+//リクエストメソッドがPOSTだったらの処理
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   validateToken();
   $action = filter_input(INPUT_GET, 'action');
