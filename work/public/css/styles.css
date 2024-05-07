@@ -1,8 +1,14 @@
-h1{
+header {
   width: 300px;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.form-purge {
+  margin-top: auto;
+  cursor: pointer;
+  color: #ccc;
 }
 
 ul {
